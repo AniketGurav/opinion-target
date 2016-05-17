@@ -1,6 +1,17 @@
 About
 =====
-This package contains the CRF Baseline and LSTM-RNN implementation for the paper named "Fine-grained Opinion Mining with Recurrent Neural Networks and Word Embeddings" published in EMNLP2015, Lisboa, Portugal.
+This package contains the CRF Baseline and LSTM-RNN implementation for the paper named "Fine-grained Opinion Mining with Recurrent Neural Networks and Word Embeddings" published in EMNLP2015, Lisboa, Portugal. If you use the code in this package, please cite the paper:
+
+@inproceedings{liu2015fine,
+  title={Fine-grained opinion mining with recurrent neural networks and word embeddings},
+  author={Liu, Pengfei and Joty, Shafiq and Meng, Helen},
+  booktitle={Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing},
+  pages={1433--1443},
+  publisher={Association for Computational Linguistics},
+  venue={Lisbon, Portugal}
+  year={2015}
+}
+
 
 Prerequisite
 ============
