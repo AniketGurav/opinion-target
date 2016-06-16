@@ -6,7 +6,7 @@ import os
 import random
 import json
 
-from rnn import elman, jordan
+from rnn import lstmfeat, jordan
 from metrics.accuracy import conlleval
 from utils.tools import shuffle, minibatch, contextwin
 
@@ -57,8 +57,8 @@ if __name__ == '__main__':
     numpy.random.seed(s['seed'])
     random.seed(s['seed'])
 
-    if rnn_type == "elman":
-        rnn = elman.model(nh=s['nhidden'],
+    if rnn_type == "lstmfeat":
+        rnn = lstmfeat.model(nh=s['nhidden'],
                           nc=num_classes,
                           ne=voc_size,
                           de=s['emb_dimension'],
