@@ -1,15 +1,4 @@
 ###################################################################################################
-## Experiments for Baseline
-###################################################################################################
-laptop-baseline:
-	rm -f baseline/*.xml
-	cd baseline; python semeval_base.py --train ../evaluation/Laptop_Train_v2.xml --task 1
-
-restaurant-baseline:
-	rm -f baseline/*.xml
-	cd baseline; python semeval_base.py --train ../evaluation/Restaurants_Train_v2.xml --task 5
-
-###################################################################################################
 ## Experiments for Conditional Random Field
 ###################################################################################################
 prepare-dataset:
@@ -17,12 +6,6 @@ prepare-dataset:
 	mvn -q compile exec:java -Dexec.mainClass=edu.cuhk.hccl.AppCreateCRFfile -Dexec.args="evaluation/Restaurants_Test_Data_PhaseB.xml restaurant-test.tsv"
 	mvn -q compile exec:java -Dexec.mainClass=edu.cuhk.hccl.AppCreateCRFfile -Dexec.args="evaluation/Laptop_Train_v2.xml laptop-train.tsv"	
 	mvn -q compile exec:java -Dexec.mainClass=edu.cuhk.hccl.AppCreateCRFfile -Dexec.args="evaluation/Laptops_Test_Data_PhaseB.xml laptop-test.tsv"	
-
-evaluate-restaurant:
-	mvn -q compile exec:java -Dexec.mainClass=edu.cuhk.hccl.AppOpinionTarget \
-		-Dexec.args="restaurant-model.ser.gz restaurant-train.tsv evaluation/Restaurants_Test_Data_PhaseA.xml restaurant-test-predict.tsv"
-	paste restaurant-test.tsv restaurant-test-predict.tsv | cut -f1,3,5 > restaurant-evaluate.tsv
-	perl conlleval.pl -d "\t" < restaurant-evaluate.tsv
 
 ###################################################################################################
 ## Experiments for Recurrent Neural Network
@@ -52,7 +35,7 @@ restaurant-json:
 	mvn -q compile exec:java -Dexec.mainClass=edu.cuhk.hccl.AppPrepareRnnDataset \
 	-Dexec.args="-t ${RESTAURANT_TRAIN} -r 0.9 -s ${RESTAURANT_TEST} -o restaurant-json-${embed}.txt -e ${EMBEDDIING_FILE} -p ${embed}"
 
-# Example: make run-rnn dataset=laptop embed=Senna type=elman window=3 nhidden=100 dimension=50 init=true
+# Example: make run-rnn dataset=laptop embed=Senna type=lstmfeat window=3 nhidden=100 dimension=50 init=true
 run-rnn:
 	python main.py ${dataset}-json-${embed}.txt ${type} ${dataset}-${type}-${embed}-${window}-${nhidden}-${dimension} ${window} ${nhidden} ${dimension} ${init}
 

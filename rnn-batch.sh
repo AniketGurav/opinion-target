@@ -17,7 +17,7 @@ fi
 make laptop-json EMBEDDIING_FILE=$file embed=$embedding
 make restaurant-json EMBEDDIING_FILE=$file embed=$embedding
 
-for type in elman
+for type in lstmfeat
 do
     for units in 50 100 150 200
     do

@@ -16,6 +16,6 @@ mkdir -p cv-result cv-${dataset}
 for fold in {0..9}
 do
     make prepare-json dataset=${dataset} fold=${fold} embed=${embed} EMBEDDIING_FILE=${file}
-    make run-rnn dataset=${dataset} type=elman embed=${embed} window=3 nhidden=${hidden} dimension=${dim} init=true > cv-${dataset}/${embed}-${dim}-${hidden}-${fold}.log
+    make run-rnn dataset=${dataset} type=lstmfeat embed=${embed} window=3 nhidden=${hidden} dimension=${dim} init=true > cv-${dataset}/${embed}-${dim}-${hidden}-${fold}.log
 done
 
