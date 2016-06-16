@@ -28,8 +28,10 @@ Example Commands
 ================
 Some example commands are as follows:
 
-1. bash rnn-batch.sh Senna
-2. bash cv-batch.sh laptop Senna 50 50
+1. make laptop-features
+2. make run-crfsuite dataset=laptop type=bin
+3. bash rnn-batch.sh Senna
+4. bash cv-batch.sh laptop Senna 50 50
 
 Credits
 =======
