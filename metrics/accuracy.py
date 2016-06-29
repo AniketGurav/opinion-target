@@ -1,10 +1,7 @@
 import numpy
 import random
 import os
-import stat
 import subprocess
-from os.path import isfile
-from os import chmod
 
 def conlleval(p, g, w, filename):
     '''
@@ -39,7 +36,7 @@ def get_perf(filename):
     _conlleval = 'conlleval.pl'
 
     proc = subprocess.Popen(["perl", _conlleval], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    stdout, _ = proc.communicate('\n'.join(open(filename).readlines()))
+    stdout, _ = proc.communicate(open(filename).read())
     for line in stdout.split('\n'):
         if 'accuracy' in line:
             out = line.split()
@@ -68,5 +65,5 @@ def get_perfo(filename):
     return {'p':precision, 'r':recall, 'f1':f1score}
 
 if __name__ == '__main__':
-    #print get_perf('valid.txt')
     print get_perf('valid.txt')
+
